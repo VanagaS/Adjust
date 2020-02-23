@@ -13,10 +13,13 @@ Golang is used as programming language
 Download the archive from https://golang.org/dl/  the archive file appropriate for the architecture. For instance, if the system architecture is 64-bit x86 on Linux, the archive to be downloaded will be  `go1.13.8.linux-amd64.tar.gz`.
 
 ### Extract
-Once downloaded extract it into  `${HOME}`, creating a Go tree in  `${HOME}/opt/go`. For example:
+Once downloaded, extract it into  `${HOME}/opt`, creating a Go tree in `${HOME}/opt/go`. For example:
 
-    tar -C ${HOME}/opt -xzf go$VERSION.$OS-$ARCH.tar.gz
-(or, for example):
+create the directory
+
+    mkdir ${HOME}/opt
+    
+extract the downloaded archive (replacing the archive name with the downloaded one)
 
     tar -C ${HOME}/opt -xzf go1.13.8.linux-amd64.tar.gz
 
@@ -60,3 +63,22 @@ Execute the program using the command
     go run go-cli.go
 
 
+## Uninstalling Go
+Remove the Go installation that we did in the above steps.
+
+### Linux 
+Delete the Go installed directory 
+
+    rm -fR ${HOME}/opt/go
+    
+The environment variables created in the installation step above `(PATH & GOPATH)` persist only till the terminal session exits. 
+
+### macOS
+Delete the Go installed directory from `/usr/local/go`. You'll need sudo permissions
+
+    sudo rm -fR /usr/local/go
+    
+The Go bin directory from PATH environment must also be removed. The /etc/paths.d/go file must be removed.
+
+    sudo rm -f /etc/paths.d/go
+    
