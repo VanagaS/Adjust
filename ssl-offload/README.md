@@ -25,10 +25,8 @@ Total 112 On-line CPUs
 
 ### Given load
 - 25000 requests per second
-- 
 
-
-## Categorizing Metrics
+## Metric Categories
 
 ### Default metrics
 - CPU utilization
@@ -37,16 +35,31 @@ Total 112 On-line CPUs
 - processor time
 - Memory utilization
 - Packet loss
-- Availability 
 - Interface traffic / in-out bytes
-- 
+
 ### Performance
 - Transactions per second
+
+  The number of handshakes with or without re-using SSL Session ID. Monitoring and following this number helps us in either planning ahead for future requirements, or identifying an underlying issue.
 - Data size influence on performance
+
+  The inflow or outflow of data size (or the HTTP data) embedded in the HTTPS connection, effects the overall performance with the increase in the size. As the data size grows, the encryption and decryption adds additional delay. Patterns in these can be analysed if there are any DOS attacks or how or what application URLs handle such data and if that is accepted.
+  
 - Key generation performance
+
+  The total time, taken from syn/ack, client hello to the generation of premaster shared key on either end is expensive both in terms of CPU usage and time taken. Helps analyze how frequently or lately the premaster key needs to be generated and whats the performance benefits. Helps analyze how several factors like Cipher Suite etc are effecting the overall performance.
+  
 - SSL Session ID caching performance
+
+  SSL Session ID caching cuts down the handshake process by limiting the premaster key generation to specific timing or per number of requests. 
+  
 - Asymmetric key size performance
+
+  Effects of Asymmentric key size selected during the handhsake. The more the key size, the more the delay (but is more secure). Helps analyze and find the frequency of the key size used and their performance
+  
 - Outbound connection performance
+
+  How outbound connection (to app server) is performing. For security purposes, this as well might have been configured to encrypt (probably with lower key size Cipher) data. Sometimes the application might be sluggish, or throwing errors which inturn effect the overall time. This metric helps in identifying outbound side broblems.
 
 ### Security
 - DOS/Rate limiting observations
