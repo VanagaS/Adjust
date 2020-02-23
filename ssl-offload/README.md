@@ -63,9 +63,20 @@ Total 112 On-line CPUs
 
 ### Security
 - DOS/Rate limiting observations
+
+  We can quickly analyze if there are any connections that fall in the Rate limit criteria and accordingly block the respective IPs or dig further of what could be the issue.
+
 - Ciphers active / Safe Ciphers observations
+
+  To be PCI-DSS complaint and for general security purpose, it is advised to use strong ciphers and block any ciphers that are compromised. The metrics targeting the Ciphers helps us in identifing the clients that are using old, weak or compromised Ciphers. 
+
 - Rejected cipher observations
+
+  These metrics allows us to identify clients who are offering un-supported Ciphers and SSL-Offloader is dropping their connections.
+
 - Downstream/outbound connection encryption performance
+
+  In case downstream connection as well needs SSL/TLS to connect to app, these metrics helps in identifying any bottlenecks in initiating handshake and further encryption/decryption process.
 
 ### Generic
 - Regional statistics and their effects on performance
