@@ -63,7 +63,7 @@ Execute the program using the command
     go run go-cli.go
 
 
-## Uninstalling Go
+# Uninstalling Go
 Remove the Go installation that we did in the above steps.
 
 ### Linux 
