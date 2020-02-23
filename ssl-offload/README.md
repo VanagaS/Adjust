@@ -61,6 +61,10 @@ Total 112 On-line CPUs
 
   How outbound connection (to app server) is performing. For security purposes, this as well might have been configured to encrypt (probably with lower key size Cipher) data. Sometimes the application might be sluggish, or throwing errors which inturn effect the overall time. This metric helps in identifying outbound side broblems.
 
+- Certificate chain performance
+
+  If a certificate chain size is greater than the initial congestion window, the server needs to wait until the client confirms the receipt of the first batch of bytes that are sent before resuming the connection. If round-trips are increased before a session is established,  then slower connection is experienced by the end user.
+
 ### Security
 - DOS/Rate limiting observations
 
@@ -80,28 +84,44 @@ Total 112 On-line CPUs
 
 ### Generic
 - Regional statistics and their effects on performance
+
+  Metrics identifying the client locations. Analysing these metrics for slow connections from particular region and their frequency which can block several CPU threads.
+
 - Connection drop statistics
+
+  Metrics on number of connections being dropped clubbed with what is the CPU, i/o and Memory usage, network bandwidth usage during the time of drops helps in identify issues before hand.
+
 - Static data / File caching
+
+  Static data and/or Files cached locally instead of creating connections to the App server saves lots of time. The peformance of serving static files from local setup, comparisions of performance fetching from local vs App server gives better overview.
+
 - Scalable redundancy
+
+  Scalable redundancy monitor helps in analyzing the transactions per second and analyzing performance improvements.
+
 - Percentage of clients using SSL session ID
+
+  Out of the total connections, how many end users have been using SSL session ID. This helps in promoting to end users to switch to using a SSL session ID. Also helps analyze how frequently server is generating Session ID.
+
 - Ciphers offered by client vs Ciphers picked by Server
+
+  The metrics on what Ciphers are being offered by clients when initiating Client hello and which of them is the Server selecting. We'll also know whether server is selecting a lower cpu intensive cipher out of the cipher list or the highest rated one.
+  
 - Cipher suite selection - CPU intensive vs Security
 
 ### Good-to-know
 - Regional statistics
 - Client information (browser version, OS version, etc)
-- WAF or IDS blocks (recorded)
+- Recording and analyzing WAF or IDS blocked pages or requests
 - Time taken per Cipher suite
 
-# 
+## Nice to do
 - Exportable metrics, so that they can be uploaded/integrated with prometheus, datadog etc.,
 - Access logs in customizable format to be imported to ELK stack, etc
 - Failover setup
 - Caching solutions and CDN network
 - Rate limiting
 
-### Certificate chain
-It's not uncommon to have chained certificates. If the certificate chain size is greater than the initial congestion window, the server needs to wait until the client confirms the receipt of the first batch of bytes that are sent before resuming the connection. If round-trips are increased before a session is established,  then slower connection is experienced by the end user.
 
 ## Challenges of Monitoring
 Biggest challenge with monitoring is to set it up in such a way that we can identify any threat beforehand. In a complete setup, there can be any resource that is acting weird or overloaded and signs are clearly shown. A network device can discard packets depending on their memory, hence by affecting the performance. Discards increase application latency. Excessive discards needs to be monitored.
