@@ -101,7 +101,7 @@ Total 112 On-line CPUs
 
 - Percentage of clients using SSL session ID
 
-  Out of the total connections, how many end users have been using SSL session ID. This helps in promoting to end users to switch to using a SSL session ID. Also helps analyze how frequently server is generating Session ID.
+  Out of the total connections, how many end users' clients have been using SSL session ID. This helps in promoting to end users to switch to a client that uses SSL session ID. Also helps analyze how frequently server is generating Session ID.
 
 - Ciphers offered by client vs Ciphers picked by Server
 
